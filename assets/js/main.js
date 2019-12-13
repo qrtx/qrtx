@@ -30,6 +30,15 @@
 			$body.addClass('is-touch');
 
 	// Scrolly links.
+	Notification.requestPermission(function(permission){
+		// переменная permission содержит результат запроса
+		console.log('Результат запроса прав:', permission);
+		});
+
+
+
+
+
 		$('.scrolly').scrolly({
 			speed: 2000
 		});
