@@ -3,8 +3,29 @@
 <html>
 
 <head>
-    <<script>
-        !function(p,u,s,h,m,e){p.__cmbk=p.__cmbk||function(){(p.__cmbk.q=p.__cmbk.q||[]).push(arguments)};m=u.createElement(s);e=u.getElementsByTagName(s)[0];m.async=!0;m.src=h;e.parentNode.insertBefore(m,e);}(window,document,'script','//qrtx.push.community/js/integration.js');
+    <script>
+        function notifyMe () {
+            var notification = new Notification ("Куку)", {
+                tag : "ache-mail",
+                body : "Не забывай по нушу группу в ВК",
+                icon : "images/pic01.png"
+            });
+        }
+        
+        function notifSet () {
+            if (!("Notification" in window))
+                alert ("Ваш браузер не поддерживает уведомления.");
+            else if (Notification.permission === "granted")
+                setTimeout(notifyMe, 2000);
+            else if (Notification.permission !== "denied") {
+                Notification.requestPermission (function (permission) {
+                    if (!('permission' in Notification))
+                        Notification.permission = permission;
+                    if (permission === "granted")
+                        setTimeout(notifyMe, 2000);
+                });
+            }
+        }
     </script>
 
 
@@ -27,6 +48,7 @@
                     <li>
                         <a href="#">ИГРОВЫЕ СЕРВЕРА</a>
                         <ul>
+                            <input type="button" onclick="notifSet ()" value="Notification">
                             <li><a href="rust.html">СЕРВЕРА RUST</a></li>
                             <li><a href="samp.html">СЕРВЕРА SAMP</a></li>
                             <li><a href="minecraft.html">СЕРВЕРА MINECRAFT</a></li>
